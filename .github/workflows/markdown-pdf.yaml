@@ -11,10 +11,14 @@ on:
       - 'docs/**.md'
       # - 'docs/images/**'
 
+
 jobs:
   converttopdf:
     name: Build PDF
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
     steps:
 
       - name: Get current date
