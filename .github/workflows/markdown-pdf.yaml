@@ -1,36 +1,36 @@
-# .github/workflows/convert-to-pdf.yml
+# # .github/workflows/convert-to-pdf.yml
 
-name: Docs to PDF
-# This workflow is triggered on pushes to the repository.
-on:
-  push:
-    branches:
-      - master
-    # Paths can be used to only trigger actions when you have edited certain files, such as a file within the /docs directory
-    paths:
-      - 'docs/**.md'
-      # - 'docs/images/**'
+# name: Docs to PDF
+# # This workflow is triggered on pushes to the repository.
+# on:
+#   push:
+#     branches:
+#       - master
+#     # Paths can be used to only trigger actions when you have edited certain files, such as a file within the /docs directory
+#     paths:
+#       - 'docs/**.md'
+#       # - 'docs/images/**'
 
 
-jobs:
-  converttopdf:
-    name: Build PDF
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
-    steps:
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y%m%d')"
-      - uses: actions/checkout@v3
-      - uses: baileyjm02/markdown-to-pdf@v1
-        with:
-          # input_dir: docs
-          input_path: docs/${{steps.date.outputs.date}}.md
-          output_dir: pdfs
-          build_html: false
-      - uses: actions/upload-artifact@v3
-        with:
-          name: docs
-          path: pdfs/${{steps.date.outputs.date}}.pdf
+# jobs:
+#   converttopdf:
+#     name: Build PDF
+#     runs-on: ubuntu-latest
+#     defaults:
+#       run:
+#         working-directory: ./
+#     steps:
+#       - name: Get current date
+#         id: date
+#         run: echo "::set-output name=date::$(date +'%Y%m%d')"
+#       - uses: actions/checkout@v3
+#       - uses: baileyjm02/markdown-to-pdf@v1
+#         with:
+#           # input_dir: docs
+#           input_path: docs/${{steps.date.outputs.date}}.md
+#           output_dir: pdfs
+#           build_html: false
+#       - uses: actions/upload-artifact@v3
+#         with:
+#           name: docs
+#           path: pdfs/${{steps.date.outputs.date}}.pdf
